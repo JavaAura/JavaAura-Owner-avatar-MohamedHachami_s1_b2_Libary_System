@@ -1,0 +1,31 @@
+/* styles.css */
+.root {
+    -fx-font-family: "Arial";
+}
+
+.label-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10 20;
+    /* -fx-min-width: 70%; */
+}
+
+.button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.button-container{
+    -fx-display: flex;
+    -fx-flex-wrap: wrap;
+    -fx-justify-content: space-around;
+    /* -fx-max-width: 100%; */
+
+    
+    
+}
