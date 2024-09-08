@@ -13,5 +13,9 @@ public interface DocumentDao {
         boolean returnDocuement(Long id) throws SQLException;
         boolean addLivre(Livre livre) throws SQLException;
         boolean addMagazine(Magazine magazine) throws SQLException;
+        // boolean addJournalScientifique(Magazine magazine) throws SQLException;
+        // boolean addTheseUniversitaire(Magazine magazine) throws SQLException;
+
+
 
 }

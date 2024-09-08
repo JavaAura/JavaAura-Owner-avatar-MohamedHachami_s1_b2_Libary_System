@@ -12,8 +12,8 @@ public class DatabaseConnection {
     static {
 
         String url = "jdbc:postgresql://localhost:5432/booktrack";
-        String user = "postgres";
-        String pass = "";
+        String user = "root";
+        String pass = "root";
         try {
                 Class.forName("org.postgresql.Driver");
                 connection = DriverManager.getConnection(url, user, pass);

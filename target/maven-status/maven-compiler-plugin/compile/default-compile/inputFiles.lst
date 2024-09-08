@@ -1,9 +1,9 @@
-/home/mhachami/Desktop/projects/A2_brief/booktrack/src/main/java/com/example/controllers/DocumnetController.java
 /home/mhachami/Desktop/projects/A2_brief/booktrack/src/main/java/com/example/Utils/DatabaseConnection.java
 /home/mhachami/Desktop/projects/A2_brief/booktrack/src/main/java/com/example/Service/DocumentDaoImpl.java
 /home/mhachami/Desktop/projects/A2_brief/booktrack/src/main/java/com/example/Dao/DocumentDao.java
 /home/mhachami/Desktop/projects/A2_brief/booktrack/src/main/java/com/example/App.java
 /home/mhachami/Desktop/projects/A2_brief/booktrack/src/main/java/com/example/controllers/HomeController.java
+/home/mhachami/Desktop/projects/A2_brief/booktrack/src/main/java/com/example/controllers/DocumentController.java
 /home/mhachami/Desktop/projects/A2_brief/booktrack/src/main/java/com/example/Model/Document.java
 /home/mhachami/Desktop/projects/A2_brief/booktrack/src/main/java/com/example/Model/Livre.java
 /home/mhachami/Desktop/projects/A2_brief/booktrack/src/main/java/module-info.java
