@@ -4,23 +4,23 @@ import java.util.Date;
 
 public class Livre extends Document {
     
-    private  Long isbn;
+    private  String isbn;
 
     // public Livre() {
     //     super("", "", new Date(), 0,"Livre"); 
     //     this.isbn = 0L;
     // }
-    public Livre(String titre, String auteur, Date datePublication, long nombresPages,String type ,Long isbn) {
+    public Livre(String titre, String auteur, Date datePublication, long nombresPages,String type ,String isbn) {
         super(titre, auteur, datePublication, nombresPages,type);
         this.isbn = isbn;
     }
 
 
-    public Long getIsbn(){
+    public String getIsbn(){
         return this.isbn;
     }
 
-    public void setIsbn(Long isbn){
+    public void setIsbn(String isbn){
         this.isbn = isbn;
     }
 

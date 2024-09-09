@@ -111,7 +111,7 @@
     <!-- domaineRecherche -->
     <Label fx:id="labeldomaineRechercheField" visible="false" text="Research field : " GridPane.columnIndex="0" GridPane.rowIndex="1" wrapText="true" GridPane.halignment="LEFT"/>
     <TextField fx:id="domaineRechercheField" visible="false" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-    <Label fx:id="validationdomaineRechercheField"  GridPane.columnIndex="1" GridPane.rowIndex="2" textFill="RED"/>
+    <Label fx:id="validationdomaineRechercheField"   GridPane.columnIndex="1" GridPane.rowIndex="2" textFill="RED"/>
 
     <!-- domaineRecherche -->
 
@@ -144,14 +144,14 @@
                 GridPane.halignment="CENTER" onAction="#next">
     
         </Button>
-        <Button fx:id="submitButton" text="Submit"
+        <!-- <Button fx:id="submitButton" text="Submit"
             visible="false"
             prefWidth="100" prefHeight="40" defaultButton="true"
             GridPane.columnIndex="0" GridPane.rowIndex="11"
             GridPane.columnSpan="2" GridPane.rowSpan="1"
             GridPane.halignment="CENTER" onAction="#submit">
 
-        </Button>
+        </Button> -->
     </HBox>
 
 

@@ -169,11 +169,7 @@ public class DocumentController {
     // Method to handle the first form
     @FXML
     private void next(ActionEvent event) {
-        validationTitleField.setText("");
-        validationAuteurhField.setText("");
-        validationDatePublicationField.setText("");
-        validationPageCountField.setText("");
-        validationDocumentType.setText("");
+        clearValidation();
 
 
 
@@ -194,7 +190,7 @@ public class DocumentController {
 
         if (selectedToggle != null) {
             RadioButton selectedRadioButton = (RadioButton) selectedToggle;
-            documentType = selectedRadioButton.getText();  // Get the text of the selected radio button
+            documentType = selectedRadioButton.getText(); 
         }
 
         this.documentType = documentType;
@@ -210,18 +206,25 @@ public class DocumentController {
 
         switch (documentType) {
             case "Livre":
-                Livre livre = new Livre(title, author, parsedDate,Integer.parseInt(pageCount) , documentType,   System.currentTimeMillis());
+                Livre livre = new Livre(title, author, parsedDate,Integer.parseInt(pageCount) , documentType,   "");
                 try {
                     if(this.documentDaoImpl.addLivre(livre)){
-                        showInformationAlert("Success","Document Added Successfully","The document has been added to the database successfully.");
+                        showInformationAlert("Success","Document Added Successfully","The book has been added to the database successfully.");
                     }
                 } catch (SQLException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
                 
                 break;
             case "Magazine":
+                Magazine magazine = new Magazine(title, author, parsedDate,Integer.parseInt(pageCount) , documentType,   System.currentTimeMillis());
+                try {
+                    if(this.documentDaoImpl.addMagazine(magazine)){
+                        showInformationAlert("Success","Document Added Successfully","The magazine has been added to the database successfully.");
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             
             break;
             case "JournalScientifique":
@@ -229,7 +232,25 @@ public class DocumentController {
                 labeldomaineRechercheField.setVisible(true);
                 domaineRechercheField.setVisible(true);
 
-               
+                while (!validateInputsJournalSc()) {
+                    return;
+                }
+                
+
+                String domaineRecherche = domaineRechercheField.getText();
+
+
+                JournalScientifique journalScientifique = new JournalScientifique(title, author, parsedDate,Integer.parseInt(pageCount) , documentType, domaineRecherche);
+
+
+                try {
+                    if(this.documentDaoImpl.addJournalScientifique(journalScientifique)){
+                        showInformationAlert("Success","Document Added Successfully","The JournalScientifique has been added to the database successfully.");
+                    }
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 break;
             case "ThèseUniversitaire":
                 invisibleUi();
@@ -238,9 +259,30 @@ public class DocumentController {
 
                 labeldomaineField.setVisible(true);
                 domainField.setVisible(true);
-               
+                while (!validateInputTheseUniversitaire()) {
+                    return;
+                }
 
-            break;
+                String university = universityField.getText();
+                String domain = domainField.getText();
+
+
+                TheseUniversitaire theseUniversitaire = new TheseUniversitaire(title, author, parsedDate,Integer.parseInt(pageCount) , documentType, university,domain);
+
+
+                try {
+                    if(this.documentDaoImpl.addTheseUniversitaire(theseUniversitaire)){
+                        showInformationAlert("Success","Document Added Successfully","The JournalScientifique has been added to the database successfully.");
+                    }
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                break;
+
+
+
+
         
             default:
                 break;
@@ -248,11 +290,11 @@ public class DocumentController {
 
         
         // Print or process the form data
-        System.out.println("Title: " + title);
-        System.out.println("Author: " + author);
-        System.out.println("Date Publication: " + datePublication);
-        System.out.println("Page Count: " + pageCount);
-        System.out.println("Document Type: " + documentType);
+        // System.out.println("Title: " + title);
+        // System.out.println("Author: " + author);
+        // System.out.println("Date Publication: " + datePublication);
+        // System.out.println("Page Count: " + pageCount);
+        // System.out.println("Document Type: " + documentType);
 
 
         
@@ -261,18 +303,18 @@ public class DocumentController {
     }
 
 
-    @FXML
-    private void submit() throws IOException{
-        if(this.documentType.equals("JournalScientifique")){
-            if(!validateInputsJournalSc()){
-                return;
-            }
-        }else if(this.documentType.equals("ThèseUniversitaire")){
-            if(!validateInputTheseUniversitaire()){
-                return;
-            }
-        }
-    }
+    // @FXML
+    // private void submit() throws IOException{
+    //     if(this.documentType.equals("JournalScientifique")){
+    //         if(!validateInputsJournalSc()){
+    //             return;
+    //         }
+    //     }else if(this.documentType.equals("ThèseUniversitaire")){
+    //         if(!validateInputTheseUniversitaire()){
+    //             return;
+    //         }
+    //     }
+    // }
 
     private boolean validateInputs() {
 
@@ -364,6 +406,32 @@ public class DocumentController {
         return isValid;
         
     }
+
+    private void clearValidation(){
+        validationTitleField.setText("");
+        validationAuteurhField.setText("");
+        validationDatePublicationField.setText("");
+        validationPageCountField.setText("");
+        validationDocumentType.setText("");
+        validationdomaineRechercheField.setText("");
+
+
+
+    }
+
+
+
+
+    private void clearTextInput(){
+        titleField.setText("");
+        auteurhField.setText("");
+        pageCountField.setText("");
+        validationPageCountField.setText("");
+        domaineRechercheField.setText("");
+        universiteField.setText("");
+        domainField.setText("");
+        universityField.setText("");
+    }
    
 
 
@@ -408,8 +476,8 @@ public class DocumentController {
         pageCountField.setVisible(false);
         domaineRechercheField.setVisible(false);
 
-        nextButton.setVisible(false);
-        submitButton.setVisible(true);
+        // nextButton.setVisible(false);
+        // submitButton.setVisible(true);
 
     }
 
@@ -423,6 +491,7 @@ public class DocumentController {
     alert.showAndWait().ifPresent(response -> {
         if (response == ButtonType.OK) {
             System.out.println("User acknowledged the success message.");
+            clearTextInput();
         } else {
             System.out.println("User closed the alert or didn't click OK.");
         }
