@@ -1,12 +1,12 @@
 package com.example.Service;
 
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.List;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import java.util.Random;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.Dao.DocumentDao;
 import com.example.Model.Document;
@@ -18,12 +18,101 @@ import com.example.Utils.DatabaseConnection;
 
 public class DocumentDaoImpl implements DocumentDao {
 
-     private static Connection con = DatabaseConnection.getConnection();
+    private static Connection con = DatabaseConnection.getConnection();
 
     @Override
     public List<Document> getDocumentByName(String name) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDocumentByName'");
+        List<Document> documents = new ArrayList<>();
+        if (con == null) {
+            throw new SQLException("Database connection is not initialized.");
+        }
+
+
+        String query1 = "SELECT * FROM Document WHERE titre LIKE ? ";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            ps = con.prepareStatement(query1);
+            ps.setString(1, "%"+name+"%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String type = rs.getString("type");
+            if( type.equals("Magazine")){
+                // System.out.println(rs.getString("titre")+" "+type);
+                // Magazine magazine = new Magazine(rs.getString("titre"),rs.getString("auteur"), rs.getDate("datePublication"), rs.getInt("nombreDePages"), "Magazine", 0L);
+                Magazine magazine = new Magazine();
+                magazine.setId(rs.getLong("id"));
+                magazine.setTitre(rs.getString("titre"));
+                magazine.setAuteur(rs.getString("auteur"));
+                magazine.setDatePublication(rs.getDate("datePublication"));
+                magazine.setNombresPages(rs.getInt("nombreDePages"));
+                magazine.setType(type);
+                    documents.add(magazine);
+            }
+            else if(type.equals("Livre")) {
+                // System.out.println(rs.getString("titre")+" "+type);
+                Livre livre = new Livre();
+                livre.setId(rs.getLong("id"));
+                livre.setTitre(rs.getString("titre"));
+                livre.setAuteur(rs.getString("auteur"));
+                livre.setDatePublication(rs.getDate("datePublication"));
+                livre.setNombresPages(rs.getInt("nombreDePages"));
+                livre.setType(type);
+                documents.add(livre);
+                    
+
+            }
+            else if(type.equals("JournalScientifique")) {
+                // System.out.println(rs.getString("titre")+" "+type);
+                JournalScientifique jScientifique = new JournalScientifique();
+                jScientifique.setId(rs.getLong("id"));
+                jScientifique.setTitre(rs.getString("titre"));
+                jScientifique.setAuteur(rs.getString("auteur"));
+                jScientifique.setDatePublication(rs.getDate("datePublication"));
+                jScientifique.setNombresPages(rs.getInt("nombreDePages"));
+                jScientifique.setType(type);
+                documents.add(jScientifique);
+                    
+
+            }
+            else if(type.equals("TheseUniversitaire")) {
+                // System.out.println(rs.getString("titre")+" "+type);
+                TheseUniversitaire theseUniversitaire = new TheseUniversitaire();
+                theseUniversitaire.setId(rs.getLong("id"));
+                theseUniversitaire.setTitre(rs.getString("titre"));
+                theseUniversitaire.setAuteur(rs.getString("auteur"));
+                theseUniversitaire.setDatePublication(rs.getDate("datePublication"));
+                theseUniversitaire.setNombresPages(rs.getInt("nombreDePages"));
+                theseUniversitaire.setType(type);
+
+                documents.add(theseUniversitaire);
+                    
+
+            }
+            
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return documents; 
     }
 
     @Override
@@ -34,8 +123,84 @@ public class DocumentDaoImpl implements DocumentDao {
 
     @Override
     public List<Document> allDocuments() throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'allDocuments'");
+         List<Document> documents = new ArrayList<>();
+        if (con == null) {
+            throw new SQLException("Database connection is not initialized.");
+        }
+
+
+        String query1 = "SELECT * FROM Document  ";
+        Statement stmt;
+        ResultSet rs;
+
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(query1);
+
+            while (rs.next()) {
+                String type = rs.getString("type");
+            if( type.equals("Magazine")){
+                // System.out.println(rs.getString("titre")+" "+type);
+                // Magazine magazine = new Magazine(rs.getString("titre"),rs.getString("auteur"), rs.getDate("datePublication"), rs.getInt("nombreDePages"), "Magazine", 0L);
+                Magazine magazine = new Magazine();
+                magazine.setId(rs.getLong("id"));
+                magazine.setTitre(rs.getString("titre"));
+                magazine.setAuteur(rs.getString("auteur"));
+                magazine.setDatePublication(rs.getDate("datePublication"));
+                magazine.setNombresPages(rs.getInt("nombreDePages"));
+                magazine.setType(type);
+                    documents.add(magazine);
+            }
+            else if(type.equals("Livre")) {
+                // System.out.println(rs.getString("titre")+" "+type);
+                Livre livre = new Livre();
+                livre.setId(rs.getLong("id"));
+                livre.setTitre(rs.getString("titre"));
+                livre.setAuteur(rs.getString("auteur"));
+                livre.setDatePublication(rs.getDate("datePublication"));
+                livre.setNombresPages(rs.getInt("nombreDePages"));
+                livre.setType(type);
+                documents.add(livre);
+                    
+
+            }
+            else if(type.equals("JournalScientifique")) {
+                // System.out.println(rs.getString("titre")+" "+type);
+                JournalScientifique jScientifique = new JournalScientifique();
+                jScientifique.setId(rs.getLong("id"));
+                jScientifique.setTitre(rs.getString("titre"));
+                jScientifique.setAuteur(rs.getString("auteur"));
+                jScientifique.setDatePublication(rs.getDate("datePublication"));
+                jScientifique.setNombresPages(rs.getInt("nombreDePages"));
+                jScientifique.setType(type);
+                documents.add(jScientifique);
+                    
+
+            }
+            else if(type.equals("TheseUniversitaire")) {
+                // System.out.println(rs.getString("titre")+" "+type);
+                TheseUniversitaire theseUniversitaire = new TheseUniversitaire();
+                theseUniversitaire.setId(rs.getLong("id"));
+                theseUniversitaire.setTitre(rs.getString("titre"));
+                theseUniversitaire.setAuteur(rs.getString("auteur"));
+                theseUniversitaire.setDatePublication(rs.getDate("datePublication"));
+                theseUniversitaire.setNombresPages(rs.getInt("nombreDePages"));
+                theseUniversitaire.setType(type);
+
+                documents.add(theseUniversitaire);
+                    
+
+            }
+            
+
+        }
+        
+        
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+
+        return documents;    
     }
 
     @Override
@@ -49,359 +214,13 @@ public class DocumentDaoImpl implements DocumentDao {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'returnDocuement'");
     }
-    @Override
-    public boolean addLivre(Livre livre) throws SQLException {
-        if (con == null) {
-            throw new SQLException("Database connection is not initialized.");
-        }
     
-        String type = "Livre";
-    
-        String query1 = "INSERT INTO Document (titre, auteur, datePublication, nombreDePages, type ,available) VALUES (?, ?, ?, ?, ?, ?) RETURNING id";
-        String query2 = "INSERT INTO Livre (document_id, isbn) VALUES (?, ?)";
-    
-        PreparedStatement ps1 = null;
-        PreparedStatement ps2 = null;
-    
-        try {
-            con.setAutoCommit(false);
-    
-            ps1 = con.prepareStatement(query1);
-            if (livre.getTitre() == null || livre.getTitre().isEmpty()) {
-                throw new IllegalArgumentException("Titre cannot be null or empty");
-            }
-            ps1.setString(1, livre.getTitre());
-            ps1.setString(2, livre.getAuteur());
-            ps1.setDate(3, new java.sql.Date(livre.getDatePublication().getTime()));
-            ps1.setLong(4, livre.getNombresPages());
-            ps1.setString(5, type);
-            ps1.setInt(6, 0);
-    
-            ResultSet rs1 = ps1.executeQuery();
-            if (rs1.next()) {
-                long documentId = rs1.getLong(1);
-    
-                ps2 = con.prepareStatement(query2);
-                ps2.setLong(1, documentId);
-                ps2.setString(2, generateISBN());
-    
-                int n2 = ps2.executeUpdate();
-                if (n2 == 1) {
-                    con.commit();
-                    return true;
-                } else {
-                    con.rollback();
-                    return false;
-                }
-            } else {
-                con.rollback();
-                return false;
-            }
-    
-        } catch (SQLException e) {
-            e.printStackTrace();
-            if (con != null) {
-                try {
-                    con.rollback();
-                } catch (SQLException rollbackException) {
-                    rollbackException.printStackTrace();
-                }
-            }
-            return false;
-        } finally {
-            try { 
-                if (con != null) {
-                    con.setAutoCommit(true);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-    
-            if (ps1 != null) {
-                try {
-                    ps1.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-    
-            if (ps2 != null) {
-                try {
-                    ps2.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }   
 
 
-    @Override
-    public boolean addMagazine(Magazine magazine) throws SQLException {
-    if (con == null) {
-        throw new SQLException("Database connection is not initialized.");
-    }
-
-    String type = "Magazine";
-
-    String query1 = "INSERT  INTO Document (titre, auteur, datePublication, nombreDePages, type,available) VALUES (?, ?, ?, ?, ? ,?)  RETURNING id";
-    String query2 = "INSERT INTO Magazine (document_id, numero) VALUES (?, ?) ";
-
-    PreparedStatement ps1 = null;
-    PreparedStatement ps2 = null;
 
 
-    try {
-            con.setAutoCommit(false);
-            ps1 = con.prepareStatement(query1);
-            ps1.setString(1, magazine.getTitre());
-            ps1.setString(2, magazine.getAuteur());
-            ps1.setDate(3, new java.sql.Date(magazine.getDatePublication().getTime()));
-            ps1.setLong(4, magazine.getNombresPages());
-            ps1.setString(5, type);
-            ps1.setInt(6, 0);
 
-            ResultSet rs1 = ps1.executeQuery();
-            if (rs1.next()) {
-                long documentId = rs1.getLong(1); 
-    
-                ps2 = con.prepareStatement(query2);
-                ps2.setLong(1, documentId);
-                ps2.setLong(2, magazine.getNumero());
-    
-                int n2 = ps2.executeUpdate();
-                if (n2 == 1) {
-                    con.commit();
-                    return true;
-                } else {
-                    con.rollback();
-                    return false;
-                }
-            } else {
-                con.rollback();
-                return false;
-            }
-  
-        
-    } catch (SQLException e) {
-        e.printStackTrace();
-        if (con != null) {
-            try {
-                con.rollback();
-            } catch (SQLException rollbackException) {
-                rollbackException.printStackTrace();
-            }
-        }
-        return false;
-    }
-    finally {
-        try {
-            if (con != null) {
-                con.setAutoCommit(true);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
-        if (ps1 != null) {
-            try {
-                ps1.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
 
-        if (ps2 != null) {
-            try {
-                ps2.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    }
-
-    public static String generateISBN() {
-        Random random = new Random();
-        StringBuilder isbn = new StringBuilder();
-
-        for (int i = 0; i < 13; i++) {
-            isbn.append(random.nextInt(10)); 
-        }
-
-        return isbn.toString();
-    }
-    // private 
-
-    @Override
-    public boolean addJournalScientifique(JournalScientifique journalScientifique) throws SQLException {
-        if (con == null) {
-            throw new SQLException("Database connection is not initialized.");
-        }
     
-        String type = "Magazine";
-    
-        String query1 = "INSERT  INTO Document (titre, auteur, datePublication, nombreDePages, type,available) VALUES (?, ?, ?, ?, ? ,?)  RETURNING id";
-        String query2 = "INSERT INTO JournalScientifique (document_id, domaineRecherche) VALUES (?, ?) ";
-    
-        PreparedStatement ps1 = null;
-        PreparedStatement ps2 = null;
-    
-    
-        try {
-                con.setAutoCommit(false);
-                ps1 = con.prepareStatement(query1);
-                ps1.setString(1, journalScientifique.getTitre());
-                ps1.setString(2, journalScientifique.getAuteur());
-                ps1.setDate(3, new java.sql.Date(journalScientifique.getDatePublication().getTime()));
-                ps1.setLong(4, journalScientifique.getNombresPages());
-                ps1.setString(5, type);
-                ps1.setInt(6, 0);
-    
-                ResultSet rs1 = ps1.executeQuery();
-                if (rs1.next()) {
-                    long documentId = rs1.getLong(1); 
-        
-                    ps2 = con.prepareStatement(query2);
-                    ps2.setLong(1, documentId);
-                    ps2.setString(2, journalScientifique.getdomaineRecherche());
-        
-                    int n2 = ps2.executeUpdate();
-                    if (n2 == 1) {
-                        con.commit();
-                        return true;
-                    } else {
-                        con.rollback();
-                        return false;
-                    }
-                } else {
-                    con.rollback();
-                    return false;
-                }
-      
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-            if (con != null) {
-                try {
-                    con.rollback();
-                } catch (SQLException rollbackException) {
-                    rollbackException.printStackTrace();
-                }
-            }
-            return false;
-        }
-        finally {
-            try {
-                if (con != null) {
-                    con.setAutoCommit(true);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-    
-            if (ps1 != null) {
-                try {
-                    ps1.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-    
-            if (ps2 != null) {
-                try {
-                    ps2.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    @Override
-    public boolean addTheseUniversitaire(TheseUniversitaire theseUniversitaire) throws SQLException {
-        if (con == null) {
-            throw new SQLException("Database connection is not initialized.");
-        }
-    
-        String type = "Magazine";
-    
-        String query1 = "INSERT  INTO Document (titre, auteur, datePublication, nombreDePages, type,available) VALUES (?, ?, ?, ?, ? ,?)  RETURNING id";
-        String query2 = "INSERT INTO TheseUniversitaire (document_id, université,domaine) VALUES (?, ? ,?) ";
-    
-        PreparedStatement ps1 = null;
-        PreparedStatement ps2 = null;
-    
-    
-        try {
-                con.setAutoCommit(false);
-                ps1 = con.prepareStatement(query1);
-                ps1.setString(1, theseUniversitaire.getTitre());
-                ps1.setString(2, theseUniversitaire.getAuteur());
-                ps1.setDate(3, new java.sql.Date(theseUniversitaire.getDatePublication().getTime()));
-                ps1.setLong(4, theseUniversitaire.getNombresPages());
-                ps1.setString(5, type);
-                ps1.setInt(6, 0);
-    
-                ResultSet rs1 = ps1.executeQuery();
-                if (rs1.next()) {
-                    long documentId = rs1.getLong(1); 
-        
-                    ps2 = con.prepareStatement(query2);
-                    ps2.setLong(1, documentId);
-                    ps2.setString(2, theseUniversitaire.getUniversite());
-                    ps2.setString(3, theseUniversitaire.getDomaine());
-
-        
-                    int n2 = ps2.executeUpdate();
-                    if (n2 == 1) {
-                        con.commit();
-                        return true;
-                    } else {
-                        con.rollback();
-                        return false;
-                    }
-                } else {
-                    con.rollback();
-                    return false;
-                }
-      
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-            if (con != null) {
-                try {
-                    con.rollback();
-                } catch (SQLException rollbackException) {
-                    rollbackException.printStackTrace();
-                }
-            }
-            return false;
-        }
-        finally {
-            try {
-                if (con != null) {
-                    con.setAutoCommit(true);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-    
-            if (ps1 != null) {
-                try {
-                    ps1.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-    
-            if (ps2 != null) {
-                try {
-                    ps2.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 }

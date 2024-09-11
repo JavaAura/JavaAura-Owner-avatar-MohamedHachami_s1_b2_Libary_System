@@ -4,9 +4,11 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
 
 /**
  * JavaFX App
@@ -15,15 +17,19 @@ public class App extends Application {
 
     private static Scene scene;
 
+
+    private Stage stage;
+
     @Override
-    public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("home"), 840, 580);
+    public void start(Stage primaryStage) throws IOException {
+        this.stage = primaryStage;
+        scene = new Scene(loadFXML("Documents"), 1666, 1500);
 
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        // scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
-        stage.setTitle("BookTrack");
-        stage.setScene(scene);
-        stage.show();
+        this.stage.setTitle("BookTrack");
+        this.stage.setScene(scene);
+        this.stage.show();
     }
 
     public static void setRoot(String fxml) throws IOException {
@@ -38,6 +44,8 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+
 
     
 

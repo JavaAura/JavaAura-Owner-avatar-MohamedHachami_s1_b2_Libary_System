@@ -6,10 +6,9 @@ public class Livre extends Document {
     
     private  String isbn;
 
-    // public Livre() {
-    //     super("", "", new Date(), 0,"Livre"); 
-    //     this.isbn = 0L;
-    // }
+    public Livre() {
+      
+    }
     public Livre(String titre, String auteur, Date datePublication, long nombresPages,String type ,String isbn) {
         super(titre, auteur, datePublication, nombresPages,type);
         this.isbn = isbn;

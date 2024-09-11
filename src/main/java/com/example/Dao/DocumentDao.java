@@ -11,10 +11,8 @@ public interface DocumentDao {
         List<Document> allDocuments() throws SQLException;
         Document getDocumentById(Long id) throws SQLException;
         boolean returnDocuement(Long id) throws SQLException;
-        boolean addLivre(Livre livre) throws SQLException;
-        boolean addMagazine(Magazine magazine) throws SQLException;
-        boolean addJournalScientifique(JournalScientifique journalScientifique) throws SQLException;
-        boolean addTheseUniversitaire(TheseUniversitaire theseUniversitaire) throws SQLException;
+
+
 
 
 
