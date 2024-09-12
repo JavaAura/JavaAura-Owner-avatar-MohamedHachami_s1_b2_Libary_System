@@ -205,8 +205,8 @@ public class DocumentDaoImpl implements DocumentDao {
 
     @Override
     public Document getDocumentById(Long id) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDocumentById'");
+        return null;
+       
     }
 
     @Override

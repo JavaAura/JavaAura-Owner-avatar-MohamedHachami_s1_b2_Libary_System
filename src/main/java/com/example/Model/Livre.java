@@ -9,8 +9,14 @@ public class Livre extends Document {
     public Livre() {
       
     }
+
     public Livre(String titre, String auteur, Date datePublication, long nombresPages,String type ,String isbn) {
         super(titre, auteur, datePublication, nombresPages,type);
+        this.isbn = isbn;
+    }
+
+    public Livre(Long id,String titre, String auteur, Date datePublication, long nombresPages,String type ,String isbn) {
+        super(id,titre, auteur, datePublication, nombresPages,type);
         this.isbn = isbn;
     }
 

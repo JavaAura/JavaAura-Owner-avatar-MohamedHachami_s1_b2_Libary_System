@@ -2,17 +2,24 @@ package com.example.controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+// import java.util.Date;
 import java.util.List;
-// import java.sql.Date; 
+import java.time.LocalDate;
+import java.util.Optional;
+import java.time.ZoneId;
+import java.sql.Date; 
 
 import javafx.scene.control.DatePicker;
-import java.time.LocalDate;
-import java.time.ZoneId;
 
 import com.example.App;
 import com.example.Model.Document;
+import com.example.Model.JournalScientifique;
+import com.example.Model.Livre;
+import com.example.Model.Magazine;
+import com.example.Model.TheseUniversitaire;
 import com.example.Service.DocumentDaoImpl;
 import com.example.Service.JournalScientifiqueDaoImpl;
 import com.example.Service.LivreDaoImpl;
@@ -28,6 +35,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -209,22 +217,21 @@ public class DocumentController {
    
 
     @FXML
-    private void updateNewDocuemnt() throws IOException {
+    private void updateNewDocuemnt() throws IOException, SQLException {
          if (documentTable.getSelectionModel().getSelectedIndex() > -1){
             long documentId = documentTable.getSelectionModel().getSelectedItem().getId();
             String documentTitle = documentTable.getSelectionModel().getSelectedItem().getTitre();
             String documentAuthor = documentTable.getSelectionModel().getSelectedItem().getAuteur();
             String documentNumofPage = Long.toString(documentTable.getSelectionModel().getSelectedItem().getNombresPages());
             String documentType =  documentTable.getSelectionModel().getSelectedItem().getType();
-            Date documentDateOfPub = documentTable.getSelectionModel().getSelectedItem().getDatePublication();
+            Date documentDateOfPub = (Date) documentTable.getSelectionModel().getSelectedItem().getDatePublication();
 
 
        
-         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Book Information");
         alert.setHeaderText("Edit Book "+documentId);
         
-        // Create the input fields
         TextField titleField = new TextField();
         titleField.setPromptText("Enter title");
         titleField.setText(documentTitle);
@@ -237,26 +244,64 @@ public class DocumentController {
         pagesField.setPromptText("Enter number of pages");
         pagesField.setText(documentNumofPage);
 
+        LocalDate localDateOfPub = documentDateOfPub.toLocalDate();
+
         DatePicker datePicker = new DatePicker();
-        datePicker.setValue(localDate);
+        datePicker.setValue(localDateOfPub);
 
-        TextField typeField = new TextField();
-        typeField.setPromptText("Enter type");
+        ComboBox<String> comboBox = new ComboBox<>();
+        comboBox.getItems().addAll("Livre ", "Magazine", "TheseUniversitaire", "JournalScientifique");
 
-        // Create labels for the fields
+        comboBox.setValue(documentType);
+
+
         Label titleLabel = new Label("Title:");
         Label authorLabel = new Label("Author:");
         Label pagesLabel = new Label("Number of Pages:");
         Label dateLabel = new Label("Date of Publication:");
         Label typeLabel = new Label("Type:");
 
-        // Use a GridPane to organize the input fields
+        // Additonal for Livre
+        Label isbn = new Label("ISBN:");
+
+        TextField isbnField = new TextField();
+        isbnField.setPromptText("Enter ISBN");
+        // isbnField.setText(documentAuthor);
+
+
+        // Additonal for Magazine
+        Label numero = new Label("Numero:");
+
+        TextField numeroField = new TextField();
+        numeroField.setPromptText("Enter Numero");
+
+         // Additonal for JournalSci
+         Label domaineRecherche = new Label("Search filed:");
+
+        TextField domaineRechercheField = new TextField();
+        domaineRechercheField.setPromptText("Enter Search field");
+
+          // Additonal for Thèse Universitaire
+        Label university = new Label("University:");
+        Label domain = new Label("Domaine:");
+
+
+        TextField universityField = new TextField();
+        universityField.setPromptText("Enter the University");
+
+
+        TextField domainField = new TextField();
+        domainField.setPromptText("Enter the Domain");
+
+
+
+
+
         GridPane gridPane = new GridPane();
         gridPane.setHgap(10);
         gridPane.setVgap(10);
-        gridPane.setPadding(new Insets(20, 150, 10, 10));  // Padding around the grid
+        gridPane.setPadding(new Insets(20, 150, 10, 10));  
 
-        // Add labels and text fields to the grid
         gridPane.add(titleLabel, 0, 0);
         gridPane.add(titleField, 1, 0);
 
@@ -270,35 +315,156 @@ public class DocumentController {
         gridPane.add(datePicker, 1, 3);
 
         gridPane.add(typeLabel, 0, 4);
-        gridPane.add(typeField, 1, 4);
+        gridPane.add(comboBox, 1, 4);
 
-        // Set the grid pane as the content of the dialog
+        switch (documentType) {
+            case "TheseUniversitaire":
+                TheseUniversitaire theseUniversitaire = theseUniversitaireDaoImpl.getTheseUniversitaireById(documentId);
+                universityField.setText(theseUniversitaire.getUniversite());
+                gridPane.add(university, 0, 5);
+                gridPane.add(universityField, 1, 5);
+
+                domainField.setText(theseUniversitaire.getDomaine());
+                gridPane.add(domain, 0, 6);
+                gridPane.add(domainField, 1, 6);
+
+
+
+
+                
+                break;
+
+            case "JournalScientifique":
+
+                JournalScientifique journalScientifique = journalScientifiqueDaoImpl.getJournalScientifiqueById(documentId);
+                domaineRechercheField.setText(journalScientifique.getdomaineRecherche());
+                gridPane.add(domaineRecherche, 0, 5);
+                gridPane.add(domaineRechercheField, 1, 5);
+
+            
+            break;
+
+            case "Livre":
+                Livre livre = livreDaoImpl.getLivreById(documentId);
+                isbnField.setText(livre.getIsbn());
+                gridPane.add(isbn, 0, 5);
+                gridPane.add(isbnField, 1, 5);
+            
+            break;
+            
+            case "Magazine":
+                Magazine magazine = magazineDaoImpl.getMagazineById(documentId);
+                numeroField.setText(magazine.getNumero());
+                gridPane.add(isbn, 0, 5);
+                gridPane.add(numeroField, 1, 5);
+        
+            default:
+                break;
+        }
+
         alert.getDialogPane().setContent(gridPane);
 
-        // Apply custom CSS styling to the dialog (optional)
-        // alert.getDialogPane().getStylesheets().add(getClass().getResource("dialog-style.css").toExternalForm());
+        
+        alert.getDialogPane().setMinWidth(500);
+        alert.getDialogPane().setMinHeight(500);
 
-        // Set a fixed width for the dialog (optional)
-        alert.getDialogPane().setMinWidth(400);
+
+
 
         // Show the alert and wait for user interaction
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
-                // Retrieve the text from the TextField when OK is clicked
-               
+                System.out.println("Edited");
+                String TitleValue = titleField.getText();
+                String AuthorValue = authorField.getText();
+                String NumofPageValue =pagesField.getText();
+                long numofPageLong = 0;
+                System.out.println("Number of pages vefore: " + NumofPageValue);
+
+            if (NumofPageValue != null && !NumofPageValue.trim().isEmpty()) {
+                try {
+                    numofPageLong = Long.parseLong(NumofPageValue);
+                    System.out.println("Number of pages as long after: " + numofPageLong);
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid number format for NumofPageValue: " + NumofPageValue);
+                    e.printStackTrace();
+                }
+            }else {
+                System.out.println("NumofPageValue is empty or null");
             }
+                
+                String TypeValue =   comboBox.getValue();
+                LocalDate dateOfPublication =datePicker.getValue() ;
+
+                java.sql.Date sqlDate = java.sql.Date.valueOf(dateOfPublication);
+        
+                Date utilDate = new Date(sqlDate.getTime());
+
+                System.out.println(TitleValue+""+AuthorValue+""+""+NumofPageValue+""+TypeValue+""+""+utilDate);
+
+                
+
+
+                switch (documentType) {
+                    case "TheseUniversitaire":
+                    String universityValue = universityField.getText();
+                    String domainFieldValue = domainField.getText();
+                        try {
+                        Boolean edited =  theseUniversitaireDaoImpl.updateTheseUniversitaire(new TheseUniversitaire(documentId,TitleValue,AuthorValue,utilDate,Integer.parseInt(NumofPageValue),"TheseUniversitaire",universityValue,domainFieldValue));
+                        } catch (SQLException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        break;
+
+                    case "JournalScientifique":
+
+                        String domaindValue = domaineRechercheField.getText();
+                        try {
+                            Boolean edited =  journalScientifiqueDaoImpl.updateJournalScientifiqueDao(new JournalScientifique(documentId,TitleValue,AuthorValue,utilDate,Integer.parseInt(NumofPageValue),"JournalScientifique",domaindValue));
+                        } catch (SQLException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    
+                    break;
+
+                    case "Livre":
+                        String isbnFieldValue = isbnField.getText();
+                        try {
+                            Boolean edited =  livreDaoImpl.updateLivre(new Livre(documentId,TitleValue,AuthorValue,utilDate,Integer.parseInt(NumofPageValue),"Livre",isbnFieldValue));
+                        } catch (SQLException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                            
+                    
+                    break;
+                    
+                    case "Magazine":
+                        String numeroFieldValue = numeroField.getText();
+                        try {
+
+                            Boolean edited =  magazineDaoImpl.updateMagazine(new Magazine(documentId, TitleValue, AuthorValue, utilDate, numofPageLong, "Magazine", numeroFieldValue));
+                        } catch (SQLException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    default:
+                        break;
+                }
+            }
+
+            loadDocuments(true);
+
+
         });
 
-               
         }else{ 
-            if (listDocument.isEmpty()){
-                showInformationAlert("Error", null, "There are no records to delete", Alert.AlertType.ERROR);
-            }else{
-                showInformationAlert("Error", "Select a record", "To delete you need to select a record from the table", Alert.AlertType.ERROR);
-            }
+            System.out.println("No documents to edit");
+            
         }
 
-        // App.setRoot("EditDocument");
 
     }
 
@@ -420,19 +586,19 @@ public class DocumentController {
     @FXML
     private void showDocuments() throws IOException {
         // System.out.println("Switching");
-         App.setRoot("documentCrud");
+         App.setRoot("Documents/Documents");
     }
 
     @FXML
     private void adddNewDocument(ActionEvent event) throws IOException {
         // System.out.println("Switching");
-         App.setRoot("addDocument");
+         App.setRoot("Documents/addDocument");
     }
 
     @FXML
     private void showSettings() throws IOException {
         // System.out.println("Switching");
-         App.setRoot("addDocument");
+         App.setRoot("Documents/addDocument");
     }
 
 

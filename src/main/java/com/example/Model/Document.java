@@ -24,6 +24,15 @@ public abstract class Document {
         this.type = type;
     }
 
+    public Document(Long id,String titre, String auteur, Date datePublication, long nombresPages ,String type) {
+        this.id = id;
+        this.titre = titre;
+        this.auteur = auteur;
+        this.datePublication = datePublication;
+        this.nombresPages = nombresPages;
+        this.type = type;
+    }
+
     // Getters and Setters
     public Long getId() {
         return id;

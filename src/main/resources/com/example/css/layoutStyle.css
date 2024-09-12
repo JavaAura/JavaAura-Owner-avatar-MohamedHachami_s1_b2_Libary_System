@@ -53,3 +53,16 @@
     -fx-mark-color: #64b5f6; /* Lighter blue on hover */
     -fx-text-fill: #000; /* Darker text on hover */
 }
+
+
+.button{
+    -fx-background-color: transparent;
+}
+
+.button:hover{
+    -fx-background-color: #20B2AA;
+    -fx-border-color: #2F4F4F;
+    -fx-border-style: solid;
+    -fx-border-width: 0px 0px 0px 8px; /* 25px top, 10px right, 4px bottom and 35px left */
+
+}

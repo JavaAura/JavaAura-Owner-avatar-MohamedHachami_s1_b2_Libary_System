@@ -37,14 +37,14 @@
         
             <ImageView fitHeight="56.0" fitWidth="122.0" layoutX="31.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@./images/alvo.png" />
+                  <Image url="@../images/alvo.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
    </top>
    <left>
-      <AnchorPane prefHeight="332.0" prefWidth="146.0" style="-fx-background-color:red;" stylesheets="@./css/layoutStyle.css" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="332.0" prefWidth="146.0" style="-fx-background-color:red;" stylesheets="@../css/layoutStyle.css" BorderPane.alignment="CENTER">
          <children>
             <VBox layoutX="21.0" layoutY="48.0" prefHeight="332.0" prefWidth="146.0" style="-fx-background-color: #16423C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -52,7 +52,7 @@
                      <graphic>
                         <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@./images/doc.png" />
+                              <Image url="@../images/doc.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
@@ -60,7 +60,7 @@
                      <graphic>
                         <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@./images/user.png" />
+                              <Image url="@../images/user.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
@@ -68,7 +68,7 @@
                      <graphic>
                         <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@./images/configuracoes.png" />
+                              <Image url="@../images/configuracoes.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
@@ -76,7 +76,7 @@
                         <graphic>
                            <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@./images/configuracoes.png" />
+                                 <Image url="@../images/configuracoes.png" />
                               </image>
                            </ImageView>
                         </graphic></Button>
@@ -84,7 +84,7 @@
                            <graphic>
                               <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@./images/configuracoes.png" />
+                                    <Image url="@../images/configuracoes.png" />
                                  </image>
                               </ImageView>
                            </graphic></Button>
@@ -94,7 +94,7 @@
       </AnchorPane>
    </left>
    <center>
-      <AnchorPane prefHeight="850.0" prefWidth="1500.0" style="-fx-background-color: white;-fx-border-color: red;" stylesheets="@./css/centerStyle.css">
+      <AnchorPane prefHeight="850.0" prefWidth="1500.0" style="-fx-background-color: white;-fx-border-color: red;" stylesheets="@../css/centerStyle.css">
          <children>
             <GridPane layoutX="20.0" layoutY="30.0" hgap="20" vgap="10" style="-fx-padding: 20;">
                <columnConstraints>

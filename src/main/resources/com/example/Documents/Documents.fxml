@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
+
+<!-- <VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.DocumentController">
+   <children>
+      <Label text="Manage Documents" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+     
+   <HBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"  styleClass="button-container">
+       <Button fx:id="addBtn" text="Add new document" onAction="#adddNewDocument"/>
+      <Button fx:id="updateBtn" text="Update Docuement" onAction="#updateNewDocuemnt"/>
+      <Button fx:id="deleteBtn" text=" Delete document" onAction="#deleteNewDocument"/>
+      <Button fx:id="displayBtn" text="Manage Reservation" onAction="#displayDocuments"/>
+   </HBox>
+   </children>
+
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox> -->
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.GridPane?>
+
+
+
+
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="com.example.controllers.DocumentController">
+   <top>
+      <AnchorPane prefHeight="90.0" prefWidth="800.0" style="-fx-background-color: #16423C;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="103.0" layoutY="26.0" text="Book Track" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="34.0" />
+               </font></Label>
+        
+            <ImageView fitHeight="56.0" fitWidth="122.0" layoutX="31.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/alvo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="332.0" prefWidth="146.0" stylesheets="@../css/layoutStyle.css" BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutX="21.0" layoutY="48.0" prefHeight="332.0" prefWidth="146.0" style="-fx-background-color: #16423C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="btnPerson" mnemonicParsing="false" onAction="#showDocuments" prefHeight="116.0" prefWidth="146.0">
+                     <graphic>
+                        <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/doc.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button mnemonicParsing="false" onAction="#adddNewDocument" prefHeight="116.0" prefWidth="146.0">
+                     <graphic>
+                        <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/user.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="120.0" prefWidth="146.0">
+                     <graphic>
+                        <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/configuracoes.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                     <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="120.0" prefWidth="146.0">
+                        <graphic>
+                           <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../images/configuracoes.png" />
+                              </image>
+                           </ImageView>
+                        </graphic></Button>
+                        <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="120.0" prefWidth="146.0">
+                           <graphic>
+                              <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/configuracoes.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1500.0" style="-fx-background-color: white;" stylesheets="@../css/centerStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+         <children>
+            <HBox layoutX="14.0" layoutY="20.0" prefHeight="32.0" prefWidth="620.0" AnchorPane.leftAnchor="14.0">
+               <children>
+                  <TextField fx:id="txtSearch" onAction="#actionSearch" onKeyPressed="#keyPressed" prefHeight="25.0" prefWidth="427.0" promptText="    Enter value here" style="-fx-background-radius: 10;">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets right="1.0" top="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#actionSearch" prefHeight="32.0" prefWidth="50.0" style="-fx-background-color: transparent;" styleClass="buttonImg">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/procurar.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+               </children>
+            </HBox>
+            <TableView fx:id="documentTable" layoutX="20.0" layoutY="59.0" prefHeight="350.0" prefWidth="1050.0">
+              <columns>
+               <TableColumn fx:id="columnId" prefWidth="170.0" text="Id" />
+                <TableColumn fx:id="columnTitle" prefWidth="170.0" text="Title" />
+                <TableColumn fx:id="columnAuthor" prefWidth="170.0" text="Author" />
+                  <TableColumn fx:id="columnDatePublication" prefWidth="170.0" text="Date Publication" />
+                  <TableColumn fx:id="columnNumOfPage" prefWidth="170.0" text="Nombre de pages" />
+                  <TableColumn fx:id="columnType" prefWidth="170.0" text="Type" />
+              </columns>
+            </TableView>
+            <HBox layoutX="559.0" layoutY="716.0" AnchorPane.leftAnchor="459.0">
+               <children>
+                  <Button
+                  prefWidth="100" prefHeight="40" defaultButton="true"
+                  GridPane.columnIndex="0" GridPane.rowIndex="11"
+                  GridPane.columnSpan="2" GridPane.rowSpan="1"
+                  mnemonicParsing="false" onAction="#deleteNewDocument" text="Delete">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button
+                  prefWidth="100" prefHeight="40" defaultButton="true"
+                  GridPane.columnIndex="0" GridPane.rowIndex="11"
+                  GridPane.columnSpan="2" GridPane.rowSpan="1"
+                  mnemonicParsing="false" onAction="#updateNewDocuemnt" text="Update">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="goToAddNewDocument" text="Add New Document"
+                  prefWidth="100" prefHeight="40" defaultButton="true"
+                  GridPane.columnIndex="0" GridPane.rowIndex="11"
+                  GridPane.columnSpan="2" GridPane.rowSpan="1"
+                  GridPane.halignment="CENTER" onAction="#adddNewDocument">
+                  </Button>
+                
+               </children>
+            </HBox>
+            <Label fx:id="lblNote" layoutX="15.0" layoutY="325.0" prefHeight="17.0" prefWidth="427.0">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblError" layoutX="158.0" layoutY="6.0" textFill="RED">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
