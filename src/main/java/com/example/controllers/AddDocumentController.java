@@ -272,7 +272,7 @@ public class AddDocumentController {
 
                 try {
                     if(this.theseUniversitaireDaoImpl.addTheseUniversitaire(theseUniversitaire)){
-                    showInformationAlert("Success","Document Added Successfully","The JournalScientifique has been added to the database successfully.", Alert.AlertType.ERROR);
+                    showInformationAlert("Success","Document Added Successfully","The JournalScientifique has been added to the database successfully.", Alert.AlertType.INFORMATION);
                     }
                 } catch (SQLException e) {
                     // TODO Auto-generated catch block
@@ -289,7 +289,6 @@ public class AddDocumentController {
         }
 
         
-        // Print or process the form data
         System.out.println("Title: " + title);
         System.out.println("Author: " + author);
         System.out.println("Date Publication: " + datePublication);
@@ -472,9 +471,15 @@ public class AddDocumentController {
     }
 
     @FXML
+    private void showUsers(ActionEvent event) throws IOException {
+        // System.out.println("Switching");
+        App.setRoot("User/User");
+    }
+
+    @FXML
     private void adddNewDocument(ActionEvent event) throws IOException {
         // System.out.println("Switching");
-         App.setRoot("Documents/addDocument");
+         App.setRoot("User/AddUser");
     }
 
     @FXML

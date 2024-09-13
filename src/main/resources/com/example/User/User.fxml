@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -25,7 +24,7 @@
 
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="com.example.controllers.DocumentController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="com.example.controllers.UserController">
    <top>
       <AnchorPane prefHeight="90.0" prefWidth="800.0" style="-fx-background-color: #16423C;" BorderPane.alignment="CENTER">
          <children>
@@ -43,54 +42,54 @@
       </AnchorPane>
    </top>
    <left>
-      <AnchorPane prefHeight="332.0" prefWidth="146.0" stylesheets="@../css/layoutStyle.css" BorderPane.alignment="CENTER">
-         <children>
-            <VBox layoutX="21.0" layoutY="48.0" prefHeight="332.0" prefWidth="146.0" style="-fx-background-color: #16423C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Button fx:id="btnPerson" mnemonicParsing="false" onAction="#showDocuments" prefHeight="116.0" prefWidth="146.0">
-                     <graphic>
-                        <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/doc.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <Button mnemonicParsing="false" onAction="#showUsers" prefHeight="116.0" prefWidth="146.0">
-                     <graphic>
-                        <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/user.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="120.0" prefWidth="146.0">
-                     <graphic>
-                        <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/configuracoes.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                     <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="120.0" prefWidth="146.0">
-                        <graphic>
-                           <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../images/configuracoes.png" />
-                              </image>
-                           </ImageView>
-                        </graphic></Button>
-                        <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="120.0" prefWidth="146.0">
-                           <graphic>
-                              <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/configuracoes.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
-               </children>
-            </VBox>
-         </children>
-      </AnchorPane>
+    <AnchorPane prefHeight="332.0" prefWidth="146.0" stylesheets="@../css/layoutStyle.css" BorderPane.alignment="CENTER">
+        <children>
+           <VBox layoutX="21.0" layoutY="48.0" prefHeight="332.0" prefWidth="146.0" style="-fx-background-color: #16423C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                 <Button fx:id="btnPerson" mnemonicParsing="false" onAction="#showDocuments" prefHeight="116.0" prefWidth="146.0">
+                    <graphic>
+                       <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                             <Image url="@../images/doc.png" />
+                          </image>
+                       </ImageView>
+                    </graphic></Button>
+                 <Button mnemonicParsing="false" onAction="#showUsers" prefHeight="116.0" prefWidth="146.0">
+                    <graphic>
+                       <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                             <Image url="@../images/user.png" />
+                          </image>
+                       </ImageView>
+                    </graphic></Button>
+                 <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="120.0" prefWidth="146.0">
+                    <graphic>
+                       <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                             <Image url="@../images/configuracoes.png" />
+                          </image>
+                       </ImageView>
+                    </graphic></Button>
+                    <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="120.0" prefWidth="146.0">
+                       <graphic>
+                          <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                             <image>
+                                <Image url="@../images/configuracoes.png" />
+                             </image>
+                          </ImageView>
+                       </graphic></Button>
+                       <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="120.0" prefWidth="146.0">
+                          <graphic>
+                             <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                   <Image url="@../images/configuracoes.png" />
+                                </image>
+                             </ImageView>
+                          </graphic></Button>
+              </children>
+           </VBox>
+        </children>
+     </AnchorPane>
    </left>
    <center>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1500.0" style="-fx-background-color: white;" stylesheets="@../css/centerStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -118,14 +117,12 @@
                      </graphic></Button>
                </children>
             </HBox>
-            <TableView fx:id="documentTable" layoutX="20.0" layoutY="59.0" prefHeight="350.0" prefWidth="1050.0">
+            <TableView fx:id="usersTable" layoutX="20.0" layoutY="59.0" prefHeight="350.0" prefWidth="1050.0">
               <columns>
                <TableColumn fx:id="columnId" prefWidth="170.0" text="Id" />
-                <TableColumn fx:id="columnTitle" prefWidth="170.0" text="Title" />
-                <TableColumn fx:id="columnAuthor" prefWidth="170.0" text="Author" />
-                  <TableColumn fx:id="columnDatePublication" prefWidth="170.0" text="Date Publication" />
-                  <TableColumn fx:id="columnNumOfPage" prefWidth="170.0" text="Nombre de pages" />
-                  <TableColumn fx:id="columnType" prefWidth="170.0" text="Type" />
+                <TableColumn fx:id="columnName" prefWidth="170.0" text="Name" />
+                <TableColumn fx:id="columnEmail" prefWidth="170.0" text="Email" />
+                  <TableColumn fx:id="columnTypeOfUser" prefWidth="170.0" text="User tpe" />
               </columns>
             </TableView>
             <HBox layoutX="559.0" layoutY="716.0" AnchorPane.leftAnchor="459.0">
@@ -134,7 +131,7 @@
                   prefWidth="100" prefHeight="40" defaultButton="true"
                   GridPane.columnIndex="0" GridPane.rowIndex="11"
                   GridPane.columnSpan="2" GridPane.rowSpan="1"
-                  mnemonicParsing="false" onAction="#deleteNewDocument" text="Delete">
+                  mnemonicParsing="false" onAction="#deleteUser" text="Delete">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
@@ -143,16 +140,16 @@
                   prefWidth="100" prefHeight="40" defaultButton="true"
                   GridPane.columnIndex="0" GridPane.rowIndex="11"
                   GridPane.columnSpan="2" GridPane.rowSpan="1"
-                  mnemonicParsing="false" onAction="#updateNewDocuemnt" text="Update">
+                  mnemonicParsing="false" onAction="#updateUser" text="Update">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="goToAddNewDocument" text="Add New Document"
+                  <Button fx:id="goToAddNewDocument" text="Add New User"
                   prefWidth="100" prefHeight="40" defaultButton="true"
                   GridPane.columnIndex="0" GridPane.rowIndex="11"
                   GridPane.columnSpan="2" GridPane.rowSpan="1"
-                  GridPane.halignment="CENTER" onAction="#adddNewDocument">
+                  GridPane.halignment="CENTER" onAction="#addNewUser">
                   </Button>
                 
                </children>

@@ -28,7 +28,7 @@ public class DocumentDaoImpl implements DocumentDao {
         }
 
 
-        String query1 = "SELECT * FROM Document WHERE titre LIKE ? ";
+        String query1 = "SELECT * FROM Document WHERE LOWER(titre) LIKE LOWER(?) ";
         PreparedStatement ps = null;
         ResultSet rs = null;
 

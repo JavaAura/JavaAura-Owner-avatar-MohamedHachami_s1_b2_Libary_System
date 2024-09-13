@@ -2,14 +2,9 @@ package com.example.controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-// import java.util.Date;
 import java.util.List;
 import java.time.LocalDate;
-import java.util.Optional;
-import java.time.ZoneId;
 import java.sql.Date; 
 
 import javafx.scene.control.DatePicker;
@@ -65,7 +60,7 @@ public class DocumentController {
     private Button goToAddNewDocument;
 
 
-     @FXML
+    @FXML
     private TextField txtSearch;
 
     @FXML
@@ -226,8 +221,7 @@ public class DocumentController {
             String documentType =  documentTable.getSelectionModel().getSelectedItem().getType();
             Date documentDateOfPub = (Date) documentTable.getSelectionModel().getSelectedItem().getDatePublication();
 
-
-       
+   
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Book Information");
         alert.setHeaderText("Edit Book "+documentId);
@@ -536,10 +530,7 @@ public class DocumentController {
         }
     }
 
-    @FXML
-    private void displayDocuments() throws IOException {
-         App.setRoot("home");
-    }
+
 
   
 
@@ -590,13 +581,20 @@ public class DocumentController {
     }
 
     @FXML
-    private void adddNewDocument(ActionEvent event) throws IOException {
+    private void showUsers(ActionEvent event) throws IOException {
         // System.out.println("Switching");
-         App.setRoot("Documents/addDocument");
+        App.setRoot("User/User");
     }
 
     @FXML
     private void showSettings() throws IOException {
+        // System.out.println("Switching");
+         App.setRoot("Documents/addDocument");
+    }
+
+
+    @FXML
+    private void adddNewDocument() throws IOException {
         // System.out.println("Switching");
          App.setRoot("Documents/addDocument");
     }
