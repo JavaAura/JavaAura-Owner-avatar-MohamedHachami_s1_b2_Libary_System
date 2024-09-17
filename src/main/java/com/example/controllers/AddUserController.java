@@ -6,11 +6,14 @@ import java.sql.SQLException;
 import com.example.App;
 import com.example.Model.Professor;
 import com.example.Model.Student;
+import com.example.Model.UserSession;
+import com.example.Model.Users;
 import com.example.Service.UserDaoImpl;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -80,6 +83,9 @@ public class AddUserController {
     @FXML
     private Label validationUserType;
 
+    @FXML
+    private Button showUsersBtn;
+
     public AddUserController(){
         this.userDaoImpl = new UserDaoImpl();
     }
@@ -120,11 +126,16 @@ public class AddUserController {
         userEmailField.textProperty().addListener((observable, oldValue, newValue) -> {
             validationUserEmail.setText("");
         });
+
+        Users connectedUser = UserSession.getUser();
+
+        if(connectedUser.getType_user().equals("Student") || connectedUser.getType_user().equals("Professor")){
+            showUsersBtn.setVisible(false);
+        }
     }
 
     @FXML
     private void handelSubmit(ActionEvent event) throws SQLException {
-        System.out.println("sss");
         clearValidation();
 
         Toggle selectedToggle = group.getSelectedToggle();
@@ -136,8 +147,6 @@ public class AddUserController {
         }
 
         if(!additionalValidationInputs(userType) || !validateInputs()){
-            System.out.println("azaz"+userEmailField.getText());
-
             return;
         }
 
@@ -153,7 +162,7 @@ public class AddUserController {
             Professor professor = new Professor();
             professor.setName(userName);
             professor.setEmail(userEmail);
-            professor.seType("Professor");
+            professor.setType_user("Professor");
             professor.setSpecialite(additional);
 
             added = this.userDaoImpl.addProfessor(professor);
@@ -164,7 +173,7 @@ public class AddUserController {
             Student student = new Student();
             student.setName(userName);
             student.setEmail(userEmail);
-            student.seType("Student");
+            student.setType_user("Student");
             student.setNiveauEtude(additional);
 
             added = this.userDaoImpl.addStudent(student);

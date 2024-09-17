@@ -14,6 +14,7 @@ import com.example.Model.Magazine;
 import com.example.Model.Professor;
 import com.example.Model.Student;
 import com.example.Model.TheseUniversitaire;
+import com.example.Model.UserSession;
 import com.example.Model.Users;
 import com.example.Service.UserDaoImpl;
 
@@ -23,6 +24,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -68,18 +70,41 @@ public class UserController {
     
     private ObservableList<Users> observableListUsers;
 
+     @FXML
+    private Button goToAddNewDocument;
+
+    @FXML
+    private Button deleteBtn;
+
+    @FXML
+    private Button updateBtn;
+
+
+
+    @FXML
+    private Button showUsersBtn;
+
+
+
 
 
     @FXML
     public void initialize() {
+        Users connectedUser = UserSession.getUser();
+
+        if(connectedUser.getType_user().equals("Student") || connectedUser.getType_user().equals("Professor")){
+            goToAddNewDocument.setVisible(false);
+            updateBtn.setVisible(false);
+            deleteBtn.setVisible(false);
+            showUsersBtn.setVisible(false);
+
+
+        }
 
         loadUsers(false);
 
-    
 
-
-
-        
+   
     }
 
 

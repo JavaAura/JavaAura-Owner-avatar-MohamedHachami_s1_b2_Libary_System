@@ -25,7 +25,7 @@
 
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="com.example.controllers.DocumentController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="com.example.controllers.AvailableDocument">
    <top>
       <AnchorPane prefHeight="90.0" prefWidth="800.0" style="-fx-background-color: #16423C;" BorderPane.alignment="CENTER">
          <children>
@@ -62,7 +62,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                     <Button   fx:id="showAvailableBtn" mnemonicParsing="false" onAction="#showAvailableDocuments" >
+                     <Button mnemonicParsing="false" fx:id="showEmpruntBtn"  onAction="#showAvailableDocuments" prefHeight="120.0" prefWidth="146.0">
                         <graphic>
                            <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -104,56 +104,56 @@
                </children>
             </HBox>
             <TableView fx:id="documentTable" layoutX="20.0" layoutY="59.0" prefHeight="350.0" prefWidth="1050.0">
-              <columns>
-               <TableColumn fx:id="columnId" prefWidth="170.0" text="Id" />
-                <TableColumn fx:id="columnTitle" prefWidth="170.0" text="Title" />
-                <TableColumn fx:id="columnAuthor" prefWidth="170.0" text="Author" />
-                  <TableColumn fx:id="columnDatePublication" prefWidth="170.0" text="Date Publication" />
-                  <TableColumn fx:id="columnNumOfPage" prefWidth="170.0" text="Nombre de pages" />
-                  <TableColumn fx:id="columnType" prefWidth="170.0" text="Type" />
-              </columns>
-            </TableView>
-            <HBox layoutX="559.0" layoutY="716.0" AnchorPane.leftAnchor="459.0">
+               <columns>
+                <TableColumn fx:id="columnId" prefWidth="170.0" text="Id" />
+                 <TableColumn fx:id="columnTitle" prefWidth="170.0" text="Title" />
+                 <TableColumn fx:id="columnAuthor" prefWidth="170.0" text="Author" />
+                   <TableColumn fx:id="columnDatePublication" prefWidth="170.0" text="Date Publication" />
+                   <TableColumn fx:id="columnNumOfPage" prefWidth="170.0" text="Nombre de pages" />
+                   <TableColumn fx:id="columnType" prefWidth="170.0" text="Type" />
+               </columns>
+             </TableView>
+             <HBox layoutX="559.0" layoutY="716.0" AnchorPane.leftAnchor="459.0">
                <children>
-                  <Button
-                  fx:id="deleteBtn"
+                  <Button fx:id="borrowDocuemntBtn" text="Borrow Document"
                   prefWidth="100" prefHeight="40" defaultButton="true"
                   GridPane.columnIndex="0" GridPane.rowIndex="11"
                   GridPane.columnSpan="2" GridPane.rowSpan="1"
-                  mnemonicParsing="false" onAction="#deleteNewDocument" text="Delete">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
+                  GridPane.halignment="CENTER" onAction="#borrowDocument">
+                  <HBox.margin>
+                     <Insets right="5.0" />
+                 </HBox.margin>
                   </Button>
-                  <Button
-                  fx:id="updateBtn"
+
+                  <Button fx:id="returnDocumentBtn" text="Return Document"
                   prefWidth="100" prefHeight="40" defaultButton="true"
                   GridPane.columnIndex="0" GridPane.rowIndex="11"
                   GridPane.columnSpan="2" GridPane.rowSpan="1"
-                  mnemonicParsing="false" onAction="#updateNewDocuemnt" text="Update">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
+                  GridPane.halignment="CENTER" onAction="#returnDocument">
+                  <HBox.margin>
+                     <Insets right="5.0" />
+                 </HBox.margin>
                   </Button>
-                  <Button fx:id="goToAddNewDocument" text="Add New Document"
+                  <Button fx:id="reserveDocumentBtn" text="Reserve Document"
                   prefWidth="100" prefHeight="40" defaultButton="true"
                   GridPane.columnIndex="0" GridPane.rowIndex="11"
                   GridPane.columnSpan="2" GridPane.rowSpan="1"
-                  GridPane.halignment="CENTER" onAction="#adddNewDocument">
+                  GridPane.halignment="CENTER" onAction="#reserveDocument">
+                  <HBox.margin>
+                     <Insets right="5.0" />
+                 </HBox.margin>
+                  </Button>
+                  <Button fx:id="showReservationBtn" text="Show My Reservations"
+                     prefWidth="100" prefHeight="40" defaultButton="true"
+                     GridPane.columnIndex="0" GridPane.rowIndex="11"
+                     GridPane.columnSpan="2" GridPane.rowSpan="1"
+                     GridPane.halignment="CENTER" onAction="#showReservation">
+                  
                   </Button>
                 
                </children>
             </HBox>
-            <Label fx:id="lblNote" layoutX="15.0" layoutY="325.0" prefHeight="17.0" prefWidth="427.0">
-               <font>
-                  <Font name="Arial" size="12.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblError" layoutX="158.0" layoutY="6.0" textFill="RED">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Label>
+            
          </children>
       </AnchorPane>
    </center>

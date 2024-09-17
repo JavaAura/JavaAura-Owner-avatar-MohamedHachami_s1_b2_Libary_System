@@ -15,6 +15,8 @@ import com.example.Model.JournalScientifique;
 import com.example.Model.Livre;
 import com.example.Model.Magazine;
 import com.example.Model.TheseUniversitaire;
+import com.example.Model.UserSession;
+import com.example.Model.Users;
 import com.example.Service.DocumentDaoImpl;
 import com.example.Service.JournalScientifiqueDaoImpl;
 import com.example.Service.LivreDaoImpl;
@@ -59,6 +61,12 @@ public class DocumentController {
     @FXML
     private Button goToAddNewDocument;
 
+    @FXML
+    private Button deleteBtn;
+
+    @FXML
+    private Button updateBtn;
+
 
     @FXML
     private TextField txtSearch;
@@ -95,6 +103,12 @@ public class DocumentController {
     
     private ObservableList<Document> observableListDocuments;
 
+    @FXML
+    private Button showUsersBtn;
+
+    @FXML
+    private Button showAvailableBtn;
+
 
     
 
@@ -105,13 +119,21 @@ public class DocumentController {
         this.magazineDaoImpl = new MagazineDaoImpl();
         this.journalScientifiqueDaoImpl = new JournalScientifiqueDaoImpl();
         this.theseUniversitaireDaoImpl = new TheseUniversitaireDaoImpl();
-
     }
+
+
+  
+
+
+   
 
     @FXML
     public void initialize() {
 
+        Users connectedUser = UserSession.getUser();
+
         loadDocuments(false);
+        // System.out.println(this.myData);
 
         ToggleGroup group = new ToggleGroup();
         RadioButton livre = new RadioButton("select first");
@@ -125,6 +147,19 @@ public class DocumentController {
 
         RadioButton TheseUniversitaire = new RadioButton("select second");
         TheseUniversitaire.setToggleGroup(group);
+
+        if(connectedUser.getType_user().equals("Student") || connectedUser.getType_user().equals("Professor")){
+            goToAddNewDocument.setVisible(false);
+            updateBtn.setVisible(false);
+            deleteBtn.setVisible(false);
+            showUsersBtn.setVisible(false);
+            showAvailableBtn.setPrefHeight(116.0);
+            showAvailableBtn.setPrefWidth(146.0);
+
+
+        }
+
+        
 
 
 
@@ -587,16 +622,14 @@ public class DocumentController {
     }
 
     @FXML
-    private void showSettings() throws IOException {
-        // System.out.println("Switching");
-         App.setRoot("Documents/addDocument");
+    private void showAvailableDocuments() throws IOException {
+         App.setRoot("Documents/AvailableDocument");
     }
 
 
     @FXML
     private void adddNewDocument() throws IOException {
-        // System.out.println("Switching");
-         App.setRoot("Documents/addDocument");
+        App.setRoot("Documents/addDocument");
     }
 
 

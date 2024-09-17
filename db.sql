@@ -58,7 +58,7 @@
         datePublication DATE NOT NULL,
         nombreDePages BIGINT NOT NULL,
         type VARCHAR(20) NOT NULL,
-        available int NOT NULL 
+        available BOOLEAN DEFAULT TRUE
     );
 
 
@@ -109,7 +109,7 @@ CREATE TABLE Users (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) UNIQUE,
     email VARCHAR(255) NOT NULL,
-    type_user VARCHAR(50) CHECK (type_user IN ('Professor', 'Student')) NOT NULL
+    type_user VARCHAR(50) CHECK (type_user IN ('Professor', 'Student','Admin')) NOT NULL
 ) ;
 
 CREATE TABLE Student (
@@ -130,3 +130,39 @@ VALUES ('Alice Dupont', 'alice.dupont@example.com', 'Student', 'Master Informati
 
 INSERT INTO Professor (name, email, type_user, specialite)
 VALUES ('Khalil', 'Khalil.mr@example.com', 'Professor', ' Informatique');
+
+CREATE TABLE BorrowHistory (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,  -- Assuming Users.id is INTEGER
+    document_id INTEGER NOT NULL,  -- Assuming Document.id is INTEGER
+    borrow_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    return_date TIMESTAMP,
+    CONSTRAINT FK_DOC_BORROW FOREIGN KEY (document_id)
+        REFERENCES Document(id) ON DELETE CASCADE,
+    CONSTRAINT FK_USER_BORROW FOREIGN KEY (user_id)
+        REFERENCES Users(id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE reservation(
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES Users(id),
+    document_id INTEGER NOT NULL REFERENCES Document(id),
+    date_reservation DATE NOT NULL
+);
+
+
+
+module com.example {
+    requires javafx.controls;
+    requires javafx.fxml;
+    requires java.sql;
+    requires javafx.graphics;
+    
+    requires io.github.cdimascio.dotenv;
+    opens io.github.cdimascio.dotenv;
+
+    opens com.example.controllers to javafx.fxml;
+    opens com.example.Model to javafx.base;
+    exports com.example;
+}

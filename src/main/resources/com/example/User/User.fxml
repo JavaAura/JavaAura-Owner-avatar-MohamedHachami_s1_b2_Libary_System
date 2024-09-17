@@ -42,54 +42,40 @@
       </AnchorPane>
    </top>
    <left>
-    <AnchorPane prefHeight="332.0" prefWidth="146.0" stylesheets="@../css/layoutStyle.css" BorderPane.alignment="CENTER">
-        <children>
-           <VBox layoutX="21.0" layoutY="48.0" prefHeight="332.0" prefWidth="146.0" style="-fx-background-color: #16423C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <children>
-                 <Button fx:id="btnPerson" mnemonicParsing="false" onAction="#showDocuments" prefHeight="116.0" prefWidth="146.0">
-                    <graphic>
-                       <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                          <image>
-                             <Image url="@../images/doc.png" />
-                          </image>
-                       </ImageView>
-                    </graphic></Button>
-                 <Button mnemonicParsing="false" onAction="#showUsers" prefHeight="116.0" prefWidth="146.0">
-                    <graphic>
-                       <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                          <image>
-                             <Image url="@../images/user.png" />
-                          </image>
-                       </ImageView>
-                    </graphic></Button>
-                 <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="120.0" prefWidth="146.0">
-                    <graphic>
-                       <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                          <image>
-                             <Image url="@../images/configuracoes.png" />
-                          </image>
-                       </ImageView>
-                    </graphic></Button>
-                    <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="120.0" prefWidth="146.0">
-                       <graphic>
-                          <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                             <image>
-                                <Image url="@../images/configuracoes.png" />
-                             </image>
-                          </ImageView>
-                       </graphic></Button>
-                       <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="120.0" prefWidth="146.0">
-                          <graphic>
-                             <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                   <Image url="@../images/configuracoes.png" />
-                                </image>
-                             </ImageView>
-                          </graphic></Button>
-              </children>
-           </VBox>
-        </children>
-     </AnchorPane>
+      <AnchorPane prefHeight="332.0" prefWidth="146.0" stylesheets="@../css/layoutStyle.css" BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutX="21.0" layoutY="48.0" prefHeight="332.0" prefWidth="146.0" style="-fx-background-color: #16423C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="btnPerson" mnemonicParsing="false" onAction="#showDocuments" prefHeight="116.0" prefWidth="146.0">
+                     <graphic>
+                        <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/doc.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="showUsersBtn" mnemonicParsing="false" onAction="#showUsers" prefHeight="116.0" prefWidth="146.0">
+                     <graphic>
+                        <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/user.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                     <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="120.0" prefWidth="146.0">
+                        <graphic>
+                           <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../images/emprunt.png" />
+                              </image>
+                           </ImageView>
+                        </graphic>
+                     </Button>
+                        
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
    </left>
    <center>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1500.0" style="-fx-background-color: white;" stylesheets="@../css/centerStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -128,6 +114,7 @@
             <HBox layoutX="559.0" layoutY="716.0" AnchorPane.leftAnchor="459.0">
                <children>
                   <Button
+                  fx:id="deleteBtn"
                   prefWidth="100" prefHeight="40" defaultButton="true"
                   GridPane.columnIndex="0" GridPane.rowIndex="11"
                   GridPane.columnSpan="2" GridPane.rowSpan="1"
@@ -137,6 +124,7 @@
                      </HBox.margin>
                   </Button>
                   <Button
+                  fx:id="updateBtn"
                   prefWidth="100" prefHeight="40" defaultButton="true"
                   GridPane.columnIndex="0" GridPane.rowIndex="11"
                   GridPane.columnSpan="2" GridPane.rowSpan="1"

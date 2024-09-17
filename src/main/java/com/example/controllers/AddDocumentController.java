@@ -6,7 +6,11 @@ import com.example.App;
 import com.example.Model.JournalScientifique;
 import com.example.Model.Livre;
 import com.example.Model.Magazine;
+import com.example.Model.Professor;
+import com.example.Model.Student;
 import com.example.Model.TheseUniversitaire;
+import com.example.Model.UserSession;
+import com.example.Model.Users;
 import com.example.Service.DocumentDaoImpl;
 import com.example.Service.JournalScientifiqueDaoImpl;
 import com.example.Service.LivreDaoImpl;
@@ -145,9 +149,15 @@ public class AddDocumentController {
     @FXML
     private Label validationUniversityField;
 
-    private String documentType;
 
-    private App mainApp;
+
+    @FXML
+    private Button showUsersBtn;
+
+
+    @FXML
+    private Button showEmpruntBtn;
+
 
     public AddDocumentController(){
           this.documentDaoImpl = new DocumentDaoImpl();
@@ -155,6 +165,18 @@ public class AddDocumentController {
         this.magazineDaoImpl = new MagazineDaoImpl();
         this.journalScientifiqueDaoImpl = new JournalScientifiqueDaoImpl();
         this.theseUniversitaireDaoImpl = new TheseUniversitaireDaoImpl();
+    }
+
+
+
+    @FXML
+    public void initialize() {
+     
+        Users connectedUser = UserSession.getUser();
+
+        if(connectedUser.getType_user().equals("Student") || connectedUser.getType_user().equals("Professor")){
+            showUsersBtn.setVisible(false);
+        }
     }
 
 
@@ -185,7 +207,6 @@ public class AddDocumentController {
             documentType = selectedRadioButton.getText(); 
         }
 
-        this.documentType = documentType;
         
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false); 
@@ -196,7 +217,6 @@ public class AddDocumentController {
             System.out.println("Invalid date format. Please enter a date in the format yyyy-MM-dd.");
         }
 
-        System.out.println("type"+documentType);
         
 
         switch (documentType) {

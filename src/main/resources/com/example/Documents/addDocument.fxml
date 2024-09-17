@@ -56,7 +56,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button mnemonicParsing="false" onAction="#showUsers" prefHeight="116.0" prefWidth="146.0">
+                  <Button  fx:id="showUsersBtn"  mnemonicParsing="false" onAction="#showUsers" prefHeight="116.0" prefWidth="146.0">
                      <graphic>
                         <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -64,30 +64,16 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="120.0" prefWidth="146.0">
-                     <graphic>
-                        <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/configuracoes.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                     <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="120.0" prefWidth="146.0">
+                     <!-- <Button mnemonicParsing="false" fx:id="showEmpruntBtn"  onAction="#showSettings" prefHeight="120.0" prefWidth="146.0">
                         <graphic>
                            <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@../images/configuracoes.png" />
+                                 <Image url="@../images/emprunt.png" />
                               </image>
                            </ImageView>
-                        </graphic></Button>
-                        <Button mnemonicParsing="false" onAction="#showSettings" prefHeight="120.0" prefWidth="146.0">
-                           <graphic>
-                              <ImageView fitHeight="178.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/configuracoes.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
+                        </graphic>
+                     </Button> -->
+                        
                </children>
             </VBox>
          </children>

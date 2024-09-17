@@ -25,7 +25,7 @@
 
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="com.example.controllers.DocumentController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="com.example.controllers.MyReservations">
    <top>
       <AnchorPane prefHeight="90.0" prefWidth="800.0" style="-fx-background-color: #16423C;" BorderPane.alignment="CENTER">
          <children>
@@ -80,80 +80,33 @@
    <center>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1500.0" style="-fx-background-color: white;" stylesheets="@../css/centerStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
          <children>
-            <HBox layoutX="14.0" layoutY="20.0" prefHeight="32.0" prefWidth="620.0" AnchorPane.leftAnchor="14.0">
-               <children>
-                  <TextField fx:id="txtSearch" onAction="#actionSearch" onKeyPressed="#keyPressed" prefHeight="25.0" prefWidth="427.0" promptText="    Enter value here" style="-fx-background-radius: 10;">
-                     <padding>
-                        <Insets right="20.0" />
-                     </padding>
-                     <HBox.margin>
-                        <Insets right="1.0" top="5.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Arial" size="12.0" />
-                     </font>
-                  </TextField>
-                  <Button mnemonicParsing="false" onAction="#actionSearch" prefHeight="32.0" prefWidth="50.0" style="-fx-background-color: transparent;" styleClass="buttonImg">
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/procurar.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-               </children>
-            </HBox>
+            
             <TableView fx:id="documentTable" layoutX="20.0" layoutY="59.0" prefHeight="350.0" prefWidth="1050.0">
               <columns>
                <TableColumn fx:id="columnId" prefWidth="170.0" text="Id" />
                 <TableColumn fx:id="columnTitle" prefWidth="170.0" text="Title" />
                 <TableColumn fx:id="columnAuthor" prefWidth="170.0" text="Author" />
                   <TableColumn fx:id="columnDatePublication" prefWidth="170.0" text="Date Publication" />
-                  <TableColumn fx:id="columnNumOfPage" prefWidth="170.0" text="Nombre de pages" />
                   <TableColumn fx:id="columnType" prefWidth="170.0" text="Type" />
               </columns>
             </TableView>
             <HBox layoutX="559.0" layoutY="716.0" AnchorPane.leftAnchor="459.0">
-               <children>
-                  <Button
-                  fx:id="deleteBtn"
-                  prefWidth="100" prefHeight="40" defaultButton="true"
-                  GridPane.columnIndex="0" GridPane.rowIndex="11"
-                  GridPane.columnSpan="2" GridPane.rowSpan="1"
-                  mnemonicParsing="false" onAction="#deleteNewDocument" text="Delete">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button
-                  fx:id="updateBtn"
-                  prefWidth="100" prefHeight="40" defaultButton="true"
-                  GridPane.columnIndex="0" GridPane.rowIndex="11"
-                  GridPane.columnSpan="2" GridPane.rowSpan="1"
-                  mnemonicParsing="false" onAction="#updateNewDocuemnt" text="Update">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="goToAddNewDocument" text="Add New Document"
-                  prefWidth="100" prefHeight="40" defaultButton="true"
-                  GridPane.columnIndex="0" GridPane.rowIndex="11"
-                  GridPane.columnSpan="2" GridPane.rowSpan="1"
-                  GridPane.halignment="CENTER" onAction="#adddNewDocument">
-                  </Button>
-                
-               </children>
-            </HBox>
-            <Label fx:id="lblNote" layoutX="15.0" layoutY="325.0" prefHeight="17.0" prefWidth="427.0">
-               <font>
-                  <Font name="Arial" size="12.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblError" layoutX="158.0" layoutY="6.0" textFill="RED">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Label>
+                <children>
+                   <Button
+                   fx:id="cancelReservation"
+                   prefWidth="100" prefHeight="40" defaultButton="true"
+                   GridPane.columnIndex="0" GridPane.rowIndex="11"
+                   GridPane.columnSpan="2" GridPane.rowSpan="1"
+                   mnemonicParsing="false" onAction="#cancelReservation" text="Cancel Reservation">
+                      <HBox.margin>
+                         <Insets right="5.0" />
+                      </HBox.margin>
+                   </Button>
+                  
+                 
+                </children>
+             </HBox>
+           
          </children>
       </AnchorPane>
    </center>

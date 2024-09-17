@@ -17,6 +17,7 @@ public interface UserDao {
     Professor getProfessorById(Long id)throws SQLException;
     Boolean updateStudent(Student student) throws SQLException;
     Boolean updateProfessor(Professor professor) throws SQLException;
+    Users login(String email , String password) throws SQLException;
 
 
 

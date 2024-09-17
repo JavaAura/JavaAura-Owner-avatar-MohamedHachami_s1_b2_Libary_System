@@ -9,13 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.Dao.UserDao;
-import com.example.Model.Document;
-import com.example.Model.JournalScientifique;
-import com.example.Model.Livre;
-import com.example.Model.Magazine;
 import com.example.Model.Professor;
 import com.example.Model.Student;
-import com.example.Model.TheseUniversitaire;
 import com.example.Model.Users;
 import com.example.Utils.DatabaseConnection;
 
@@ -62,7 +57,7 @@ public class UserDaoImpl implements UserDao {
                 }
             }
         }
-        return false; // Email does not exist
+        return false;
     }
 
 
@@ -80,7 +75,7 @@ public class UserDaoImpl implements UserDao {
             ps = con.prepareStatement(query1);
             ps.setString(1, student.getEmail());
             ps.setString(2, student.getEmail());
-            ps.setString(3, student.getType());
+            ps.setString(3, student.getType_user());
             ps.setString(4, student.getNiveauEtude());
 
             int n = ps.executeUpdate();
@@ -103,7 +98,6 @@ public class UserDaoImpl implements UserDao {
 
         return false; 
     }
-
 
     @Override
     public boolean addProfessor(Professor professor) throws SQLException {
@@ -443,6 +437,55 @@ public class UserDaoImpl implements UserDao {
             }
         
         }
+    }
+
+
+    @Override
+    public Users login(String email, String password) throws SQLException {
+        Users user = null;
+
+        if (con == null) {
+            throw new SQLException("Database connection is not initialized.");
+        }
+
+        String query = "SELECT * FROM Users WHERE email = ? AND password = ?";
+
+
+        PreparedStatement ps = null;
+
+        ResultSet rs;
+
+        try {
+            ps = con.prepareStatement(query);
+            ps.setString(1, email);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                if(rs.getString("type_user").equals("Student")){
+                    user = new Student();
+                    user.setId(rs.getLong("id"));
+                    user.setName(rs.getString("name"));
+                    user.setEmail(rs.getString("email"));
+                    user.setType_user(rs.getString("type_user"));
+                }else{
+                    user = new Professor();
+                    user.setId(rs.getLong("id"));
+                    user.setName(rs.getString("name"));
+                    user.setEmail(rs.getString("email"));
+                    user.setType_user(rs.getString("type_user"));
+                }
+               
+            }
+          
+        
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+
+        return user;
+        
+
     }
     
 }
