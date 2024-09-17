@@ -55,8 +55,8 @@ The application includes a login interface that requires users to authenticate b
 Clonez le dépôt dans votre machine locale.
 
 ```bash
-git clone https://github.com/votre-depot/gestion-documents.git
-cd gestion-documents
+git clone https://github.com/JavaAura/MohamedHachami_s1_b2_Libary_System
+cd MohamedHachami_s1_b2_Libary_System
 ```
 
 ### 2. Ensure that Maven is installed on your machine.
