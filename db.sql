@@ -50,14 +50,13 @@ CREATE TABLE TheseUniversitaire (
 ) ;
 
 
-CREATE TYPE user AS ENUM ('Student', 'Professor');
 
 
 CREATE TABLE Users (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) UNIQUE,
     email VARCHAR(255) NOT NULL,
-    type_user VARCHAR(50) CHECK (type_user IN ('Professor', 'Student')) NOT NULL
+    type_user VARCHAR(50) CHECK (type_user IN ('Professor', 'Student','Admin')) NOT NULL
 ) ;
 
 CREATE TABLE Student (
